@@ -14,12 +14,12 @@ import springboothelloworld.helloworld.pojo.IDCardAuthorization;
 public class POCWatson2ElevanceController {
 
 	@GetMapping("/idCardAuthorize")
-	public String HelloWorld() throws JsonProcessingException
+	public String checkAuth() throws JsonProcessingException
 	{
 		String autrizeStr=null;
 	
 		IDCardAuthorization idCardAuthorization=new IDCardAuthorization();
-		idCardAuthorization.setIsAuthorized("true");
+		idCardAuthorization.setIsAuthorized("true1111");
 		
 		try {
 			ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
