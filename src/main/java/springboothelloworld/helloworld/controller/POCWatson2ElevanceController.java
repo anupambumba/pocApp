@@ -5,11 +5,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 
-public class HelloWorldController {
+public class POCWatson2ElevanceController {
 
-	@GetMapping("/hello-world")
+	@GetMapping("/idCardAuthorize")
 	public String HelloWorld()
 	{
-		return "Hello World 123";
+		String autrizeStr="{";
+	
+		autrizeStr=autrizeStr+"'isAuthorized':'true'}";
+		
+		return autrizeStr;
 	}
 }
