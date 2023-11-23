@@ -13,7 +13,7 @@ import springboothelloworld.helloworld.pojo.IDCardAuthorization;
 
 public class POCWatson2ElevanceController {
 
-	@GetMapping("/idCardAuthorize")
+	@GetMapping("/checkAuth")
 	public String checkAuth() throws JsonProcessingException
 	{
 		String autrizeStr=null;
