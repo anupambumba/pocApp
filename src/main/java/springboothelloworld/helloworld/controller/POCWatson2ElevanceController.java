@@ -27,7 +27,7 @@ public class POCWatson2ElevanceController {
 		String autrizeStr=null;
 	
 		IDCardAuthorization idCardAuthorization=new IDCardAuthorization();
-		idCardAuthorization.setIsAuthorized("true");
+		idCardAuthorization.setIsAuthorized("success");
 		
 		try {
 			ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
