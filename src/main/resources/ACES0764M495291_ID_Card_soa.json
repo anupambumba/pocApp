@@ -43,98 +43,6 @@
       ]
     },
     {
-      "mbrUid": "ACES0764M495291",
-      "contractId": "0764M49529",
-      "mbrSequenceNbr": "30",
-      "firstNm": "DEPSPOUMALE",
-      "middleNm": "G",
-      "lastNm": "LSNM CA",
-      "transientMemberCards": [
-        {
-          "cardId": "YGL976124503",
-          "coverage": [
-            {
-              "subGroupId": "4ANB00",
-              "planNm": "BZ HMO 3500/20%/6850 4ANB",
-              "prodCd": "4ANB",
-              "coverageTypeCd": [
-                {
-                  "code": "M",
-                  "name": "MEDICAL"
-                }
-              ],
-              "rxDetails": [
-                {
-                  "rxBin": "020099",
-                  "rxGrp": "WL9A",
-                  "rxPcn": "IS"
-                }
-              ]
-            },
-            {
-              "subGroupId": "4ANB00",
-              "planNm": "BZ HMO 3500/20%/6850 4ANB",
-              "prodCd": "4ANB",
-              "coverageTypeCd": [
-                {
-                  "code": "D",
-                  "name": "DENTAL"
-                }
-              ],
-              "rxDetails": [
-                {
-                  "rxBin": "020099",
-                  "rxGrp": "WL9A",
-                  "rxPcn": "IS"
-                }
-              ]
-            },
-            {
-              "subGroupId": "4ANB00",
-              "planNm": "BZ HMO 3500/20%/6850 4ANB",
-              "prodCd": "4ANB",
-              "coverageTypeCd": [
-                {
-                  "code": "P",
-                  "name": "PHARMACY"
-                }
-              ],
-              "rxDetails": [
-                {
-                  "rxBin": "020099",
-                  "rxGrp": "WL9A",
-                  "rxPcn": "IS"
-                }
-              ]
-            },
-            {
-              "subGroupId": "4ANB00",
-              "planNm": "BZ HMO 3500/20%/6850 4ANB",
-              "prodCd": "4ANB",
-              "coverageTypeCd": [
-                {
-                  "code": "V",
-                  "name": "VISION"
-                }
-              ],
-              "rxDetails": [
-                {
-                  "rxBin": "020099",
-                  "rxGrp": "WL9A",
-                  "rxPcn": "IS"
-                }
-              ]
-            }
-          ],
-          "vendorStatus": {
-            "code": "1002",
-            "name": "REQUESTED_DATA_NOT_RETURNED",
-            "description": "Error No Records Found."
-          }
-        }
-      ]
-    },
-    {
       "mbrUid": "322543509",
       "contractId": "0764M49529",
       "mbrSequenceNbr": "40",
@@ -148,7 +56,7 @@
               "name": "MEDICAL"
             }
           ],
-          "recordId": "11620757",
+          "recordId": "11620756",
           "systemId": "wellpointcentralnatga",
           "custmrSrvsPhonenNbr": "1-855-804-2073",
            "idCardEffDt": "2022-01-01 05:00:00"
@@ -169,7 +77,7 @@
               "name": "MEDICAL"
             }
           ],
-          "recordId": "11620758",
+          "recordId": "11620756",
           "systemId": "wellpointcentralnatga",
           "custmrSrvsPhonenNbr": "1-855-804-2073",
            "idCardEffDt": "2022-01-01 05:00:00"

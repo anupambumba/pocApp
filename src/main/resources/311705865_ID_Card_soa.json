@@ -1,0 +1,29 @@
+{
+  "member": [
+    {
+      "mbrUid": "311705865",
+      "contractId": "817A07435",
+      "mbrSequenceNbr": "1",
+      "firstNm": "LUCAS",
+      "lastNm": "DO",
+      "memberCard": [
+        {
+          "coverageTypeCd": [
+            {
+              "code": "M",
+              "name": "MEDICAL"
+            },
+            {
+              "code": "D",
+              "name": "DENTAL"
+            }
+          ],
+          "recordId": "7980853",
+          "systemId": "wellpointaces",
+          "custmrSrvsPhonenNbr": "1-800-233-4947",
+          "idCardEffDt": "2022-01-01 05:00:00"
+        }
+      ]
+    }
+  ]
+}
