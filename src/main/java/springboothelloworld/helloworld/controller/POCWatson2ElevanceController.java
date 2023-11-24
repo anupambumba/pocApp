@@ -1,4 +1,4 @@
-package springboothelloworld.helloworld;  
+package springboothelloworld.helloworld.controller;  
 
 import java.io.IOException;
 import java.io.InputStream;
