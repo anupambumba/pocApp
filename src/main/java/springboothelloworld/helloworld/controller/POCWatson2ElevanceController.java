@@ -27,7 +27,7 @@ import springboothelloworld.helloworld.pojo.IDCardImage;
 public class POCWatson2ElevanceController {
 
 	
-	@PostMapping("/checkAuth")
+	@PostMapping("/checkauth")
 	public String checkAuth(@RequestBody String userDetails) throws JsonProcessingException{
 	
 		String autrizeStr=null;
@@ -52,7 +52,7 @@ public class POCWatson2ElevanceController {
 		
 		return autrizeStr;
 	}
-	@GetMapping("/getIDCardDetails")
+	@GetMapping("/getidcarddetails")
 	public String getIDCardDetails(@RequestParam String memberID) throws JsonProcessingException
 	{
 		String autrizeStr=null;
@@ -93,7 +93,7 @@ public class POCWatson2ElevanceController {
 		
 		return autrizeStr;
 	}
-	@GetMapping("/getImage")
+	@GetMapping("/getimage")
 	public String getImage(@RequestParam String memberID,@RequestParam String recordId,@RequestParam String systemId) throws JsonProcessingException
 	{
 		String autrizeStr=null;
