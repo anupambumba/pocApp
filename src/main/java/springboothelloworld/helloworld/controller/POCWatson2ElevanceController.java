@@ -25,6 +25,15 @@ import springboothelloworld.helloworld.pojo.IDCardImage;
 @RestController
 @RequestMapping (path="/poc")
 public class POCWatson2ElevanceController {
+	@GetMapping(path="/ping")
+	public String ping() throws JsonProcessingException
+	{
+		String autrizeStr="Deployed successfully......";
+		
+	
+		
+		return autrizeStr;
+	}
 
 	
 	@PostMapping(path="/checkauth")
