@@ -34,9 +34,9 @@ public class POCWatson2ElevanceController {
 	
 		IDCardAuthorization idCardAuthorization=new IDCardAuthorization();
 		if(userDetails.equalsIgnoreCase("ACES0764M495291") || userDetails.equalsIgnoreCase("311705865")) {
-			idCardAuthorization.setIsAuthorized("true");
+			idCardAuthorization.setIsAuthorized("success");
 		}else {
-			idCardAuthorization.setIsAuthorized("false");
+			idCardAuthorization.setIsAuthorized("failure");
 		}
 		
 		
