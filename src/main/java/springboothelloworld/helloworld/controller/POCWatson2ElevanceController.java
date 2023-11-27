@@ -10,7 +10,6 @@ import org.apache.wink.json4j.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,8 +22,16 @@ import springboothelloworld.helloworld.pojo.IDCardAuthorization;
 import springboothelloworld.helloworld.pojo.IDCardImage;
 
 @RestController
-@RequestMapping (path="/poc")
 public class POCWatson2ElevanceController {
+	@GetMapping(path="/")
+	public String home() throws JsonProcessingException
+	{
+		String autrizeStr="Home page of the application";
+		
+	
+		
+		return autrizeStr;
+	}
 	@GetMapping(path="/ping")
 	public String ping() throws JsonProcessingException
 	{
