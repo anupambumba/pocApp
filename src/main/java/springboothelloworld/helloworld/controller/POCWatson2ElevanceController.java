@@ -18,12 +18,19 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.SwaggerDefinition;
+import io.swagger.annotations.Tag;
 import springboothelloworld.helloworld.pojo.ErrorDetails;
 import springboothelloworld.helloworld.pojo.IDCardAuthorization;
 import springboothelloworld.helloworld.pojo.IDCardImage;
 
 @RestController
 @RequestMapping(path = "/poc")
+@Api(value = "POCWatson2ElevanceController" , tags = {"IDCard Controller"})
+@SwaggerDefinition(tags = {
+        @Tag(name = "IDCard Controller", description = "Write description here")
+})
 public class POCWatson2ElevanceController {
 	@GetMapping(path="/")
 	public String home() throws JsonProcessingException
