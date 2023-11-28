@@ -7,6 +7,7 @@ import java.util.Base64;
 import org.apache.commons.io.IOUtils;
 import org.apache.wink.json4j.JSON;
 import org.apache.wink.json4j.JSONObject;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,6 +33,7 @@ import springboothelloworld.helloworld.pojo.IDCardImage;
         @Tag(name = "IDCard Controller", description = "Write description here")
 })
 public class POCWatson2ElevanceController {
+	@CrossOrigin(origins = "*")
 	@GetMapping(path="/")
 	public String home() throws JsonProcessingException
 	{
@@ -41,6 +43,7 @@ public class POCWatson2ElevanceController {
 		
 		return autrizeStr;
 	}
+	@CrossOrigin(origins = "*")
 	@GetMapping(path="/ping")
 	public String ping() throws JsonProcessingException
 	{
@@ -51,7 +54,7 @@ public class POCWatson2ElevanceController {
 		return autrizeStr;
 	}
 
-	
+	@CrossOrigin(origins = "*")
 	@PostMapping(path="/checkauth")
 	public String checkAuth(@RequestBody String userDetails) throws JsonProcessingException{
 	
@@ -77,6 +80,7 @@ public class POCWatson2ElevanceController {
 		
 		return autrizeStr;
 	}
+	@CrossOrigin(origins = "*")
 	@GetMapping(path="/getidcarddetails")
 	public String getIDCardDetails(@RequestParam String memberID) throws JsonProcessingException
 	{
@@ -118,6 +122,7 @@ public class POCWatson2ElevanceController {
 		
 		return autrizeStr;
 	}
+	@CrossOrigin(origins = "*")
 	@GetMapping(path="/getimage")
 	public String getImage(@RequestParam String memberID,@RequestParam String recordId,@RequestParam String systemId) throws JsonProcessingException
 	{
