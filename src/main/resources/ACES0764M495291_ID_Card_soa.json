@@ -21,27 +21,7 @@
         }
       ]
     },
-    {
-      "mbrUid": "ACES0764M495291",
-      "contractId": "0764M49529",
-      "mbrSequenceNbr": "10",
-      "firstNm": "JONATHAN",
-      "lastNm": "ROTHBERG",
-      "memberCard": [
-        {
-          "coverageTypeCd": [
-            {
-              "code": "M",
-              "name": "MEDICAL"
-            }
-          ],
-          "recordId": "11620756",
-          "systemId": "wellpointcentralnatga",
-          "custmrSrvsPhonenNbr": "1-855-804-2073",
-           "idCardEffDt": "2023-01-01 05:00:00"
-        }
-      ]
-    },
+   
     {
       "mbrUid": "322543509",
       "contractId": "0764M49529",
