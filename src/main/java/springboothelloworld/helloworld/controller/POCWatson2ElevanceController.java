@@ -146,8 +146,8 @@ public class POCWatson2ElevanceController {
 				byte[] backImageBytes=DatatypeConverter.parseBase64Binary(backImageBase64);
 				String nameAppnder=String.valueOf(System.currentTimeMillis());		
 				
-				File frontImageOutputFile=new File("image/"+nameAppnder+"_front.png");
-				File backImageOutputFile=new File("image/"+nameAppnder+"_back.png");
+				File frontImageOutputFile=new File("/image/"+nameAppnder+"_front.png");
+				File backImageOutputFile=new File("/image/"+nameAppnder+"_back.png");
 				frontImageOutputFile.createNewFile();
 				backImageOutputFile.createNewFile();
 				
