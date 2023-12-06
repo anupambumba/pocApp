@@ -1,19 +1,24 @@
 package springboothelloworld.helloworld.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Base64;
 
+import javax.xml.bind.DatatypeConverter;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.wink.json4j.JSON;
 import org.apache.wink.json4j.JSONObject;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -132,13 +137,32 @@ public class POCWatson2ElevanceController {
 				InputStream in = this.getClass().getResourceAsStream("/Front.png");
 				imageData = IOUtils.toByteArray(in);
 				in.read(imageData);
-				String frontImage = Base64.getEncoder().encodeToString(imageData);
+				String frontImageBase64 = Base64.getEncoder().encodeToString(imageData);
 				in = this.getClass().getResourceAsStream("/Back.png");
 				imageData = IOUtils.toByteArray(in);
 				in.read(imageData);
-				String backImage = Base64.getEncoder().encodeToString(imageData);
-				idCardImage.setFrontImage(frontImage);
-				idCardImage.setBackImage(backImage);
+				String backImageBase64 = Base64.getEncoder().encodeToString(imageData);
+				byte[] frontImageBytes=DatatypeConverter.parseBase64Binary(frontImageBase64);
+				byte[] backImageBytes=DatatypeConverter.parseBase64Binary(backImageBase64);
+				String nameAppnder=String.valueOf(System.currentTimeMillis());		
+				
+				File frontImageOutputFile=new File("src/main/resources/image/"+nameAppnder+"_front.png");
+				File backImageOutputFile=new File("src/main/resources/image/"+nameAppnder+"_back.png");
+				frontImageOutputFile.createNewFile();
+				backImageOutputFile.createNewFile();
+				
+				FileOutputStream outpoutFileStreamFront=new FileOutputStream(frontImageOutputFile);
+				FileOutputStream outpoutFileStreamBack=new FileOutputStream(backImageOutputFile);
+				outpoutFileStreamFront.write(frontImageBytes);
+				outpoutFileStreamBack.write(backImageBytes);
+				outpoutFileStreamFront.flush();
+				outpoutFileStreamFront.close();
+				outpoutFileStreamBack.flush();
+				outpoutFileStreamBack.close();			
+				
+				
+				idCardImage.setFrontImage(nameAppnder+"_front.png");
+				idCardImage.setBackImage(nameAppnder+"_back.png");
 				ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 				autrizeStr = ow.writeValueAsString(idCardImage);
 			} catch (IOException e) {
@@ -155,5 +179,23 @@ public class POCWatson2ElevanceController {
 		}
 
 		return autrizeStr;
+	}
+	
+	
+	@CrossOrigin(origins = "*")
+	@GetMapping(path = "/image")
+	public ResponseEntity<byte[]> getImage(@RequestParam String imageName) throws IOException {
+
+		 HttpHeaders headers = new HttpHeaders();
+	        headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
+	        headers.add("Pragma", "no-cache");
+	        headers.add("Expires", "0");
+	        String filePath = "/image/"+imageName;
+	    InputStream inputStream = this.getClass().getResourceAsStream(filePath);
+	    byte[] resource=IOUtils.toByteArray(inputStream);
+	    return ResponseEntity.ok()
+	            .headers(headers)
+	            .contentType(MediaType.IMAGE_PNG)
+	            .body(resource);
 	}
 }
