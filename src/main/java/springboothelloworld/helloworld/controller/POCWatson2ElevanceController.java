@@ -145,9 +145,8 @@ public class POCWatson2ElevanceController {
 				byte[] frontImageBytes=DatatypeConverter.parseBase64Binary(frontImageBase64);
 				byte[] backImageBytes=DatatypeConverter.parseBase64Binary(backImageBase64);
 				String nameAppnder=String.valueOf(System.currentTimeMillis());		
-				 String path = (this.getClass().getResource("/image/a.png")).getPath();
-			/*	File frontImageOutputFile=new File("src/main/resources/image/"+nameAppnder+"_front.png");
-				File backImageOutputFile=new File("src/main/resources/image/"+nameAppnder+"_back.png");
+				File frontImageOutputFile=new File("/home/site/wwwroot/app.jar!/BOOT-INF/classes!/image/"+nameAppnder+"_front.png");
+				File backImageOutputFile=new File("/home/site/wwwroot/app.jar!/BOOT-INF/classes!/image/"+nameAppnder+"_back.png");
 				frontImageOutputFile.createNewFile();
 				backImageOutputFile.createNewFile();
 				
@@ -158,10 +157,10 @@ public class POCWatson2ElevanceController {
 				outpoutFileStreamFront.flush();
 				outpoutFileStreamFront.close();
 				outpoutFileStreamBack.flush();
-				outpoutFileStreamBack.close();	*/		
+				outpoutFileStreamBack.close();		
 				
 				
-				idCardImage.setFrontImage(nameAppnder+"_front.png   -"+path);
+				idCardImage.setFrontImage(nameAppnder+"_front.png");
 				idCardImage.setBackImage(nameAppnder+"_back.png");
 				ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 				autrizeStr = ow.writeValueAsString(idCardImage);
