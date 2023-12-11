@@ -1,7 +1,7 @@
 package springboothelloworld.helloworld.controller;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Base64;
@@ -22,6 +22,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.azure.storage.file.share.ShareDirectoryClient;
+import com.azure.storage.file.share.ShareFileClient;
+import com.azure.storage.file.share.ShareFileClientBuilder;
+import com.azure.storage.file.share.models.ShareFileUploadInfo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -145,21 +149,17 @@ public class POCWatson2ElevanceController {
 				byte[] frontImageBytes=DatatypeConverter.parseBase64Binary(frontImageBase64);
 				byte[] backImageBytes=DatatypeConverter.parseBase64Binary(backImageBase64);
 				String nameAppnder=String.valueOf(System.currentTimeMillis());		
-				File frontImageOutputFile=new File("/home/site/wwwroot/app.jar!/BOOT-INF/classes!/image/"+nameAppnder+"_front.png");
-				File backImageOutputFile=new File("/home/site/wwwroot/app.jar!/BOOT-INF/classes!/image/"+nameAppnder+"_back.png");
-				frontImageOutputFile.createNewFile();
-				backImageOutputFile.createNewFile();
-				
-				FileOutputStream outpoutFileStreamFront=new FileOutputStream(frontImageOutputFile);
-				FileOutputStream outpoutFileStreamBack=new FileOutputStream(backImageOutputFile);
-				outpoutFileStreamFront.write(frontImageBytes);
-				outpoutFileStreamBack.write(backImageBytes);
-				outpoutFileStreamFront.flush();
-				outpoutFileStreamFront.close();
-				outpoutFileStreamBack.flush();
-				outpoutFileStreamBack.close();		
-				
-				
+				String connectStr="DefaultEndpointsProtocol=https;AccountName=elevancepocimage;AccountKey=1MVPfuMJmXet8eiKA4w/WvaKoB1Ej6+BfDv5VaKD8hYWTUaaH5+/bRk5rtri/K3Ji+ql7SAi72bP+AStQwUnYA==;EndpointSuffix=core.windows.net";
+				InputStream frontImageUploadInputStream = new ByteArrayInputStream(frontImageBytes);
+				InputStream backImageUploadInputStream = new ByteArrayInputStream(backImageBytes);
+				 ShareDirectoryClient dirClient = new ShareFileClientBuilder()
+			             .connectionString(connectStr).shareName("elevancepocfileshare")
+			             .resourcePath("elevancepocimage")
+			             .buildDirectoryClient();
+				 ShareFileClient fileClientFrontImage = dirClient.createFile(nameAppnder+"_front.png", frontImageBytes.length);
+				  ShareFileUploadInfo responseFront = fileClientFrontImage.upload(frontImageUploadInputStream, frontImageBytes.length);
+				 ShareFileClient fileClientBackImage = dirClient.createFile(nameAppnder+"_back.png",backImageBytes.length);
+				 ShareFileUploadInfo responseBack = fileClientBackImage.upload(backImageUploadInputStream, backImageBytes.length);
 				idCardImage.setFrontImage(nameAppnder+"_front.png");
 				idCardImage.setBackImage(nameAppnder+"_back.png");
 				ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
@@ -169,7 +169,13 @@ public class POCWatson2ElevanceController {
 				errDet.setErrorDetails(e.toString());
 				ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 				autrizeStr = ow.writeValueAsString(errDet);
+			}catch (Exception e) {
+				ErrorDetails errDet = new ErrorDetails();
+				errDet.setErrorDetails(e.toString());
+				ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+				autrizeStr = ow.writeValueAsString(errDet);
 			}
+			
 		} else {
 			ErrorDetails errDet = new ErrorDetails();
 			errDet.setErrorDetails("The provided data is not proper. Hence it can not be retrieved.");
@@ -189,9 +195,19 @@ public class POCWatson2ElevanceController {
 	        headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
 	        headers.add("Pragma", "no-cache");
 	        headers.add("Expires", "0");
-	        String filePath = "/image/"+imageName;
-	    InputStream inputStream = this.getClass().getResourceAsStream(filePath);
-	    byte[] resource=IOUtils.toByteArray(inputStream);
+	    	String connectStr="DefaultEndpointsProtocol=https;AccountName=elevancepocimage;AccountKey=1MVPfuMJmXet8eiKA4w/WvaKoB1Ej6+BfDv5VaKD8hYWTUaaH5+/bRk5rtri/K3Ji+ql7SAi72bP+AStQwUnYA==;EndpointSuffix=core.windows.net";
+	        ShareDirectoryClient dirClient = new ShareFileClientBuilder()
+		             .connectionString(connectStr).shareName("elevancepocfileshare")
+		             .resourcePath("elevancepocimage")
+		             .buildDirectoryClient();
+	        
+			 ShareFileClient fileClient = dirClient.getFileClient(imageName);
+			 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			 fileClient.download(outputStream);
+			 byte[] resource=outputStream.toByteArray();
+			 fileClient.delete();
+			
+	   
 	    return ResponseEntity.ok()
 	            .headers(headers)
 	            .contentType(MediaType.IMAGE_PNG)

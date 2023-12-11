@@ -76,6 +76,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.azure/azure-storage-file-share -->
+		<dependency>
+			<groupId>com.azure</groupId>
+			<artifactId>azure-storage-file-share</artifactId>
+			<version>12.21.1</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
