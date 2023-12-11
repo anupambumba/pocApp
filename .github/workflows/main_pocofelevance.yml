@@ -50,4 +50,4 @@ jobs:
           app-name: 'pocofelevance'
           slot-name: 'Production'
           package: '*.jar'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_763CE753C9A24F7C81EB419B8C58366D }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3375ADC282B24488B321CFE196CD216D }}
